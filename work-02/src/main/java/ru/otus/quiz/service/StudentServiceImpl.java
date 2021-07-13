@@ -6,18 +6,17 @@ import org.springframework.stereotype.Service;
 import ru.otus.quiz.domain.Student;
 
 @Service
-@Data
 @RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
-    private final ConsoleService console;
+    private final InputOutputService inputOutputService;
 
     @Override
     public Student introduceStudent() {
         Student student = new Student();
-        console.printf("Please enter your name: ");
-        student.setFirstName(console.read());
-        console.printf("Please enter your surname: ");
-        student.setLastName(console.read());
+        inputOutputService.printf("Please enter your name: ");
+        student.setFirstName(inputOutputService.read());
+        inputOutputService.printf("Please enter your surname: ");
+        student.setLastName(inputOutputService.read());
         return student;
     }
 }

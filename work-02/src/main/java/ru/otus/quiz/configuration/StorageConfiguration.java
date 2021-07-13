@@ -10,10 +10,10 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:application.properties")
 @Data
 @Accessors(chain = true)
-public class QuizConfiguration {
-    private final int pathRate;
+public class StorageConfiguration {
+    private final String csvPath;
 
-    public QuizConfiguration(@Value("${quiz.pass.rate}") int pathRate) {
-        this.pathRate = pathRate;
+    public StorageConfiguration(@Value("${quiz.csv.path}") String csvPath) {
+        this.csvPath = csvPath;
     }
 }

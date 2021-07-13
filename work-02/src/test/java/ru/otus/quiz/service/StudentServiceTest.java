@@ -16,9 +16,9 @@ class StudentServiceTest {
     private final static String DEFAULT_NAME = "Sergey";
     private final static String DEFAULT_LAST_NAME = "Cherkasov";
     @Autowired
-    StudentService studentService;
+    private StudentService studentService;
     @MockBean
-    ConsoleService consoleMock;
+    private InputOutputServiceImpl consoleMock;
 
     @Test
     public void testIntroduce() {

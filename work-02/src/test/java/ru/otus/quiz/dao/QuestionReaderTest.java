@@ -1,7 +1,7 @@
 package ru.otus.quiz.dao;
 
 import org.junit.jupiter.api.Test;
-import ru.otus.quiz.configuration.QuizConfiguration;
+import ru.otus.quiz.configuration.StorageConfiguration;
 import ru.otus.quiz.domain.Question;
 import ru.otus.quiz.exceptions.QuestionSourceReadException;
 
@@ -18,21 +18,21 @@ class QuestionReaderTest {
 
     @Test
     void testMissingFileException() {
-        final QuizConfiguration conf = new QuizConfiguration().setCsvPath(NOT_EXISTING_FILE);
+        final StorageConfiguration conf = new StorageConfiguration(NOT_EXISTING_FILE);
         QuestionReader questionReader = new QuestionReaderCsvImpl(conf);
         assertThatThrownBy(questionReader::readAllQuestions).isInstanceOf(QuestionSourceReadException.class);
     }
 
     @Test
     void  testInvalidFileException() {
-        final QuizConfiguration conf = new QuizConfiguration().setCsvPath(INVALID_FILE);
+        final StorageConfiguration conf = new StorageConfiguration(INVALID_FILE);
         QuestionReader questionReader = new QuestionReaderCsvImpl(conf);
         assertThatThrownBy(questionReader::readAllQuestions).isInstanceOf(QuestionSourceReadException.class);
     }
 
     @Test
     void testSuccessfulFileRead() throws QuestionSourceReadException {
-        final QuizConfiguration conf = new QuizConfiguration().setCsvPath(VALID_FILE);
+        final StorageConfiguration conf = new StorageConfiguration(VALID_FILE);
         QuestionReader reader = new QuestionReaderCsvImpl(conf);
         assertThat(reader.readAllQuestions())
                 .containsExactlyElementsOf(getStandardQuestionList());
@@ -43,7 +43,7 @@ class QuestionReaderTest {
                 .setId(1)
                 .setText("Say my name")
                 .setCorrectAnswerIndex("a")
-                .setAnswers(Map.of("a", "Heisenberg"));
+                .addAnswers(List.of(new Question.Answer().setIndex("a").setText("Heisenberg")));
         return List.of(correct);
     }
 }

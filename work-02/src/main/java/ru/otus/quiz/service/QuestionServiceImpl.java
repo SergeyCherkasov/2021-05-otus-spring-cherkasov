@@ -1,25 +1,23 @@
 package ru.otus.quiz.service;
 
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import ru.otus.quiz.domain.Question;
 
-@Component
-@Data
+@Service
 @RequiredArgsConstructor
 public class QuestionServiceImpl implements QuestionService {
-    private final ConsoleService consoleService;
+    private final InputOutputService inputOutputService;
 
     @Override
     public void printQuestion(Question question) {
-        consoleService.printf("Question %1$s: %2$s?\n", question.getId(), question.getText());
-        question.getAnswers().forEach((key, value) -> consoleService.printf("\t%1$s) %2$s\n", key, value));
+        inputOutputService.printf("Question %1$s: %2$s?\n", question.getId(), question.getText());
+        question.getAnswers().forEach((answer) -> inputOutputService.printf("\t%1$s) %2$s\n", answer.getIndex(), answer.getText()));
     }
 
     public String getAnswer(Question question) {
-        consoleService.printf("And your answer for %1$s is: ", question.getId());
-        return consoleService.read();
+        inputOutputService.printf("And your answer for %1$s is: ", question.getId());
+        return inputOutputService.read();
     }
 
     @Override
@@ -29,8 +27,6 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public void printResult(boolean result) {
-        consoleService.printf("Result: %1$s\n\n", result ? "correct" : "wrong");
+        inputOutputService.printf("Result: %1$s\n\n", result ? "correct" : "wrong");
     }
-
-
 }

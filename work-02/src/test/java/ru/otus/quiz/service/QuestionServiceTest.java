@@ -16,13 +16,11 @@ import ru.otus.quiz.domain.Question;
 @TestPropertySource("classpath:application-test.properties")
 class QuestionServiceTest {
     @Autowired
-    QuizConfiguration config;
-    @Autowired
-    QuestionReader questionReader;
+    private QuestionReader questionReader;
     @MockBean
-    ConsoleService consoleMock;
+    private InputOutputServiceImpl consoleMock;
     @Autowired
-    QuestionService questionService;
+    private QuestionService questionService;
 
     @Test
     void askQuestion() {

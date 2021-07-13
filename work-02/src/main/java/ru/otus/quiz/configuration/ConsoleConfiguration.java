@@ -2,12 +2,12 @@ package ru.otus.quiz.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import ru.otus.quiz.service.ConsoleService;
+import ru.otus.quiz.service.InputOutputServiceImpl;
 
 @Configuration
 public class ConsoleConfiguration {
     @Bean
-    public ConsoleService getConsoleService() {
-        return new ConsoleService(System.out, System.in);
+    public InputOutputServiceImpl getConsoleService() {
+        return new InputOutputServiceImpl(System.out, System.in);
     }
 }

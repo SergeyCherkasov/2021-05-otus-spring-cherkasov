@@ -9,8 +9,8 @@ class EstimateServiceImplTest {
 
     @Test
     void testEstimationResults() {
-        ConsoleService consoleMock = Mockito.mock(ConsoleService.class);
-        EstimateServiceImpl estimateService = new EstimateServiceImpl(new QuizConfiguration().setPathRate(50), consoleMock);
+        InputOutputServiceImpl consoleMock = Mockito.mock(InputOutputServiceImpl.class);
+        EstimateServiceImpl estimateService = new EstimateServiceImpl(new QuizConfiguration(50), consoleMock);
         Assertions.assertThat(estimateService.getResult( 5, 3)).isTrue();
         Assertions.assertThat(estimateService.getResult( 5, 2)).isFalse();
     }
