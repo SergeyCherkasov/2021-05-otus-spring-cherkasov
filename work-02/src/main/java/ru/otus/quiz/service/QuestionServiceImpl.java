@@ -10,23 +10,30 @@ public class QuestionServiceImpl implements QuestionService {
     private final InputOutputService inputOutputService;
 
     @Override
-    public void printQuestion(Question question) {
+    public boolean askQuestion(Question question) {
+        this.printQuestion(question);
+        boolean result = this.checkAnswer(question, this.getAnswer(question));
+        this.printResult(result);
+        return result;
+    }
+
+    private void printQuestion(Question question) {
         inputOutputService.printf("Question %1$s: %2$s?\n", question.getId(), question.getText());
         question.getAnswers().forEach((answer) -> inputOutputService.printf("\t%1$s) %2$s\n", answer.getIndex(), answer.getText()));
     }
 
-    public String getAnswer(Question question) {
+    private String getAnswer(Question question) {
         inputOutputService.printf("And your answer for %1$s is: ", question.getId());
         return inputOutputService.read();
     }
 
-    @Override
-    public boolean checkAnswer(Question question, String answer) {
+    private boolean checkAnswer(Question question, String answer) {
         return question.getCorrectAnswerIndex().equals(answer);
     }
 
-    @Override
-    public void printResult(boolean result) {
+    private void printResult(boolean result) {
         inputOutputService.printf("Result: %1$s\n\n", result ? "correct" : "wrong");
     }
+
+
 }

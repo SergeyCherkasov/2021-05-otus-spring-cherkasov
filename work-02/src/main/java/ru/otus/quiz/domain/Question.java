@@ -37,11 +37,4 @@ public class Question {
     public List<Answer> getAnswers() {
         return Collections.unmodifiableList(this.answers);
     }
-
-    @Data
-    @NoArgsConstructor
-    public static class Answer {
-        private String index;
-        private String text;
-    }
 }

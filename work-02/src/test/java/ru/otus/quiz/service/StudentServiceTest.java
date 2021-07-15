@@ -22,11 +22,11 @@ class StudentServiceTest {
     @Autowired
     private StudentService studentService;
     @MockBean
-    private InputOutputServiceImpl consoleMock;
+    private InputOutputService inputOutputService;
 
     @Test
     public void testIntroduce() {
-        Mockito.when(consoleMock.read()).thenReturn(DEFAULT_NAME, DEFAULT_LAST_NAME);
+        Mockito.when(inputOutputService.read()).thenReturn(DEFAULT_NAME, DEFAULT_LAST_NAME);
         Student expectingStudent = new Student().setFirstName(DEFAULT_NAME).setLastName(DEFAULT_LAST_NAME);
         Assertions.assertThat(studentService.introduceStudent()).isEqualTo(expectingStudent);
     }

@@ -2,11 +2,11 @@ package ru.otus.quiz.dao;
 
 import org.junit.jupiter.api.Test;
 import ru.otus.quiz.configuration.StorageConfiguration;
+import ru.otus.quiz.domain.Answer;
 import ru.otus.quiz.domain.Question;
 import ru.otus.quiz.exceptions.QuestionSourceReadException;
 
 import java.util.List;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -43,7 +43,7 @@ class QuestionReaderTest {
                 .setId(1)
                 .setText("Say my name")
                 .setCorrectAnswerIndex("a")
-                .addAnswers(List.of(new Question.Answer().setIndex("a").setText("Heisenberg")));
+                .addAnswers(List.of(new Answer().setIndex("a").setText("Heisenberg")));
         return List.of(correct);
     }
 }

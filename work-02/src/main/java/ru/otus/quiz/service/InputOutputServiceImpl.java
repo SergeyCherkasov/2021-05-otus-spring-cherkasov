@@ -1,9 +1,5 @@
 package ru.otus.quiz.service;
 
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;

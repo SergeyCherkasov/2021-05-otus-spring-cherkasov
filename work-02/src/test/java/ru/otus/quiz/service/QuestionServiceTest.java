@@ -22,13 +22,13 @@ class QuestionServiceTest {
     @Autowired
     private QuestionReader questionReader;
     @MockBean
-    private InputOutputServiceImpl consoleMock;
+    private InputOutputService inputOutputServiceMock;
     @Autowired
     private QuestionService questionService;
 
     @Test
     void askQuestion() {
-        Mockito.when(consoleMock.read()).thenReturn("a");
+        Mockito.when(inputOutputServiceMock.read()).thenReturn("a");
         Question question = questionReader.readAllQuestions().get(0);
         Assertions.assertThat(questionService.askQuestion(question)).isTrue();
     }

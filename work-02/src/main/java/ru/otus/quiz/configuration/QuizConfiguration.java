@@ -3,11 +3,9 @@ package ru.otus.quiz.configuration;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
 
-@Configuration
-@PropertySource("classpath:application.properties")
+@Component
 @Data
 @Accessors(chain = true)
 public class QuizConfiguration {
